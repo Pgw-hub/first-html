@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container_wrapper {
+        font-family: "Audiowide", sans-serif;
+        padding : 10px;
+        animation-name: example;
+        animation-duration: 10s;
+        background-color: rgb(105, 105, 236);
+        position : relative;
+    }
+
+    @keyframes example {
+        from{background-color: white}
+        to{background-color: rgb(105, 105, 236)}
+    }
+    #h1{
+        text-align: center;
+        text-shadow: 10px solid black;
+    }
+    #confidential1{
+        text-decoration-line: underline;
+        border:4px solid rgb(171, 249, 158); 
+        border-radius: 10px;
+    }
+    #confidential2{
+        text-decoration-line: underline;
+        border:4px solid rgb(171, 249, 158); 
+        border-radius: 10px;
+        border-bottom:3px solid whitesmoke
+    }
+    #uname{
+        border:4px solid rgb(171, 249, 158);
+        border-radius: 10px;
+    }
+    input[name = uname]{
+        width:200px;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[name = uname] :focus {
+        width:100%;
+    }
+    #sidebar{ 
+        top : 0;
+        right: 0;
+        position: absolute;
+        background-color: rgb(248, 216, 240);
+        width : 180px;
+        margin :30px;
+        border-radius:5px;
+        border: 3px solid yellow;
+        color : black;
+    }
+    #detail{
+        background-color: black;
+        color : white;
+    }
+
+
+
+
+</style>
+<body>
+    <div id ="container_wrapper">
+        <h1>Sign up for</h1>
+        <h2>>www. parkgeonwoo.com~~</h2>&#128512;&#128512;&#128512;
+        <div id="basic form">
+            <form name="form1" action="form_ok.php" onsubmit="return validateForm()"><!--여기서 입력하는 데이터들을 action이라는 속성을 통해 어디로 보낼지 결정, method속성은 default값이 get방식전송.*/-->
+                <fieldset id="madatoryfield" style = "width: 200px; margin: 3px;border-radius: 10px;"><!--fieldset : 말그대로 field를 set해주는 것이다. 영역표시-->
+                    <legend style="color : white; font-size: 20px;">Privacy</legend><!--form의 이름을 표시할 수 있게 보여줌.-->
+                    <label for="uname">*name</label><br><!--label : 얘도 말그대로 label표시.-->
+                    <input type="text" id="uname" name="uname" placeholdeer="이름을 꼭 입력하시오."><br><!--input태그 : 서버에 사용자입력데이터를 전송하기 위한 기본적 태그.-->
+                    <label for="confidential1">*front digit of ID nuber</label><br>
+                    <input type="text" id="confidential1" name="confidential1" placeholder="ex)981013" required><br>
+                    <!--type을 통해서 입력받는 데이터의 형태를 정할 수 있음. ex) text, password(****), checkbox(중복가능), radio(중복불가,label이름 같게 해야함.)-->
+                    <label for="confidential2">*front digit of ID nuber</label><br>
+                    <input type="password" id="confidential2" name="confidential2" placeholder="7digit" required><br>
+                </fieldset>
+                <input type="submit" value="Save" style="background-color: rgb(248, 216, 240); border-radius :5px" ><br>
+                </form>
+        </div>
+        <div id = "optional form">
+            <fieldset id="optionfield" style = "width: 200px; margin: 3px;border-radius: 10px;">
+                <legend style="color : white; font-size: 20px;">Option</legend>
+                location :<!--select,optgroup,option은 세트, 선택지를 제공하여 선택하게 하고 싶을 떄 사용.-->
+                <select name="city" id="location" style="border : 3px solid rgb(171, 249, 158)">
+                    <optgroup label="포항">
+                        <option value="1">포항시 흥해읍</option>
+                        <option value="2">포항시 죽도동 </option>
+                        <option value="3">포항시 양덕동</option>
+                    </optgroup>
+                    <optgroup label="대구">
+                        <option value="1">대구광역시 수성구</option>
+                        <option value="2">대구광역시 달서구 </option>
+                        <option value="3">대구광역시 중구</option>
+                    </optgroup>
+                    <optgroup label="서울">
+                        <option value="1">서울특별시 노원구</option>
+                        <option value="2">서울특별시 송파구 </option>
+                        <option value="3">서울특별시 동작구</option>
+                    </optgroup>
+                </select>
+            </fieldset>            
+        </div>
+        <div id = "optional form2">
+            <fieldset id="optionfield2" style = "width: 300px; margin: 3px;border-radius: 10px;">
+                <legend style="color : white; font-size: 20px;">Greeting message</legend>
+                Welcome~!!feel free to fill in the box below~! :
+                <textarea name='content' cols =30 rows=5 placeholder="feel free~~:)" style="border : 3px solid rgb(171, 249, 158)"></textarea>
+            </fieldset><!--오른쪽과 같이 택스트를 생성할 수 있는 항목이 뜸.-->
+        </div>
+        <div id = "sidebar">
+            <h2>Subscription fee calculator</h2><br>
+            <p>Month to use(ex : 3)</p>
+            <form>
+                <input type='text' size=2 name='month' id='month' pattern='\d*'>
+                <button onclick='calculator()' type='button'>enter</button>
+                <br><br>
+                Estimated fee
+                <br><br>
+                <input type='text' size=5 name='fee' id='fee' readonly>원
+            </form>
+            
+            <h4 style="color :rgb(105, 105, 236)">*WHEN*</h4>
+            subscribed more than 10months~!!<br>
+            put over your mouse to check the benefit~!!<br>
+            <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" style="border:0;" src="./images/28516.jpg" alt="20%0ff" width="32" height="32">
+            <div id = "detaildfdf">
+            </div>
+        </div>
+    </div>
+<script>
+    function calculator(){
+        var num = document.getElementById('month');
+        var r_num = parseInt(num.value);
+        var fee = r_num * 3900;
+        if(r_num > 9) fee * 0.8;
+        var result = document.getElementById('fee');
+        result.value = fee;
+    }
+
+    function validateForm(){
+        var subject = document.form1.uname;
+        if(subject.value ==""){
+            alert("이름을 입력하세요.");
+            subject.focus();
+            return false;
+        }
+        var subject1 = document.form1.confidential1;
+        if(subject1.value.length != 6 ){
+            alert("주민들록번호 앞자리를 확인하세요..");
+            subject1.focus();
+            return false;
+        }
+        var subject2 = document.form1.confidential2;
+        if(subject2.value.length != 7 ){
+            alert("주민들록번호 뒷자리를 확인하세요..");
+            subject2.focus();
+            return false;
+        }
+    }
+
+    function bigImg(x) {
+        x.style.height = "64px";
+        x.style.width = "64px";
+    }
+
+    function normalImg(x) {
+        x.style.height = "32px";
+        x.style.width = "32px";
+    }
+</script>
+</body>
+</html>
+
